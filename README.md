@@ -43,15 +43,18 @@ Network segmentation and access control policies
 - <b>172.16.2.0/24 cannot access 172.16.1.0/24</b>
 
 
-<h2>Program walk-through:</h2>
+<h2>Lab walk-through:</h2>
 
 <p align="center">
-Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Static IP addresses have been preconfigured for this lab <br/>
+<img src="https://i.imgur.com/tB7coFM.png" height="80%" width="80%" alt="OSPF and ACLs"/>
 <br />
 <br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+R1’s OSPF configuration:
+In global config mode, I used the command: router ospf 1, to configure the networks of the interfaces connected to the router.
+Then, I configured every network so that the router activates ospf in every interface and they can be advertised to R2
+  <br/>
+<img src="https://i.imgur.com/C7LEICO.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Enter the number of passes: <br/>
