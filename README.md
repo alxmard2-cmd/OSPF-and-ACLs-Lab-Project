@@ -57,22 +57,36 @@ Then, I configured every network so that the router activates ospf in every inte
 <img src="https://i.imgur.com/C7LEICO.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Then I used the command “show ip ospf interface” to verify that ospf is active in the interfaces (G0/0, G0/1, S0/0/0) <br/>
+<img src="https://i.imgur.com/urAhqzl.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Configuration of R2’s OSPF following the same process for the networks 192.168.1.0 and 192.168.2.0 and 203.0.113.0: <br/>
+<img src="https://i.imgur.com/6Oa2ZOr.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Wait for process to complete (may take some time):  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Confirmation that R1 has learnt new routes with OSPF by using the command “show ip route”: <br/>
+<img src="https://i.imgur.com/iOb0oQe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Ping SRV1 (192.168.1.100) from PC1 to check if the routers are routing the traffic correctly.
+The first Ping fails because of the ARP process but the next 3 are successful.
+  <br/>
+<img src="https://i.imgur.com/l7zWsAb.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
+Ping from PC3 to SRV2. The first one fails because of ARP but the next 3 are successful. <br/>
+<img src="https://i.imgur.com/ljjWmmj.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+I write the commands for the first ACL (For PC1 and PC3 to be the only ones permitted to access SRV1): <br/>
+Commands: <br/>
+R2(config)#ip access-list standard TO_192.168.1.0/24<br/>
+R2(config-std-nacl)#permit 172.16.1.1<br/>
+R2(config-std-nacl)#permit 172.16.2.1<br/>
+R2(config-std-nacl)#deny any<br/>
+ <br/>
+<img src="https://i.imgur.com/XG5Vry6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
 Observe the wiped disk:  <br/>
 <img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
