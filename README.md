@@ -134,6 +134,7 @@ Another ACL is created to block the traffic comming from 172.16.2.0/24 to g0/0 a
 </p>The ACL is then applied to R1’s g0/0 interface:  <br/>
 <p align="center">
 <img src="https://i.imgur.com/4EOFBA1.png" height="80%" width="80%" alt="OSPF and ACLs"/>
+</p>
 Now a few pings are tried to confirm the ACLs were configured properly: <br/>
 From PC1 to SRV1 there is connection.
   <br/>
