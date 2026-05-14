@@ -120,7 +120,7 @@ R1(config)#access-list 1 permit any<br/>
 <p align="center">
 <img src="https://i.imgur.com/iyM29Zd.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-I apply the ACL in the g0/1 interface for the router to block the outbound traffic coming from 172.16.1.1<br/>
+ACL 1 is applied to the g0/1 interface for the router to block the outbound traffic coming from 172.16.1.1<br/>
 Commands:<br/>
 R1(config)#int g0/1<br/>
 R1(config-if)#ip access-group 1 out<br/>
@@ -128,13 +128,41 @@ R1(config-if)#ip access-group 1 out<br/>
 <p align="center">
 <img src="https://i.imgur.com/gsz5DV3.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Another ACL is created to block the traffic comming from 172.16.2.0/24 to g0/0 and permit the rest of the traffic. <br/>
+<p align="center">
+<img src="https://i.imgur.com/QCTwodA.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>The ACL is then applied to R1’s g0/0 interface:  <br/>
+<p align="center">
+<img src="https://i.imgur.com/4EOFBA1.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Now a few pings are tried to confirm the ACLs were configured properly: <br/>
+From PC1 to SRV1 there is connection.
+  <br/>
+<p align="center">	
+<img src="https://i.imgur.com/YSvcjSZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
+</p>But when I ping from PC2 to SRV1 the destination is unreachable, so the firs ACL is working well. <br/>
+<p align="center">	
+<img src="https://i.imgur.com/4c1mjwf.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+</p>Now, I ping from PC3 (172.16.2.1) to SRV2 (192.168.2.100) and the destination is unreachable as expected: <br/>
+<p align="center">	
+<img src="https://i.imgur.com/xbfp2XF.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+</p>Then, I try to ping from PC2 to PC4 and the destination is not reachable neither, so the ACLs are working as expected:<br/>
+<p align="center">	
+<img src="https://i.imgur.com/JfomjBB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+Project Outcome
+
+Successfully implemented:
+
+Fully functional OSPF routing between routers
+Secure traffic filtering policies using ACLs
+Controlled inter-network communication
+End-to-end network validation through testing
+
+This project demonstrates practical networking and troubleshooting skills aligned with junior Network Administrator and Network Support roles.
 
 <!--
  ```diff
