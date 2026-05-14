@@ -24,7 +24,24 @@ Network segmentation and access control policies
 
 <h2>Environments Used </h2>
 
-- <b>Cisco Packet Tracer</b> 
+- <b>Cisco Packet Tracer</b>
+
+<h2>Objectives</h2>
+
+- <b>OSPF Configuration</b> 
+- <b>Configure OSPF on both routers</b>
+- <b>Advertise all connected networks</b>
+- <b>Verify OSPF-enabled interfaces</b>
+- <b>Confirm learned routes in routing tables</b>
+- <b>ACL Security Policies</b>
+
+<h2>Implemented the following access policies:</h2>
+
+- <b>Only PC1 and PC3 can access 192.168.1.0/24</b> 
+- <b>Hosts in 172.16.2.0/24 cannot access 192.168.2.0/24</b>
+- <b>172.16.1.0/24 cannot access 172.16.2.0/24</b>
+- <b>172.16.2.0/24 cannot access 172.16.1.0/24</b>
+
 
 <h2>Program walk-through:</h2>
 
