@@ -85,9 +85,54 @@ R2(config-std-nacl)#permit 172.16.1.1<br/>
 R2(config-std-nacl)#permit 172.16.2.1<br/>
 R2(config-std-nacl)#deny any<br/>
  <br/>
+<p align="center">
 <img src="https://i.imgur.com/XG5Vry6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>Then, for the ACL to take effect I apply it on the interface (G0/0):<br/>
+	Commands:<br/>
+	R2(config-std-nacl)#int g0/0<br/>
+R2(config-if)#ip access-group TO_192.168.1.0/24 out<br/>
+ <br/>
+ <p align="center">
+<img src="https://i.imgur.com/4Wvq1oN.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+Now, I configured the next ACL (For the interface G0/1 to deny the hosts from the network 172.16.2.0/24):<br/>
+	Commands:<br/>
+R2(config)#ip access-list standard TO_192.168.2.0/24<br/>
+R2(config-std-nacl)#deny 172.16.2.0 0.0.0.255<br/>
+R2(config-std-nacl)#permit any<br/>
+ <br/>
+ <p align="center">
+<img src="https://i.imgur.com/ZXki8WQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+Then, I apply the ACL to the G0/1’s interface outbound traffic:<br/>
+	Commands: <br/>
+	R2(config-std-nacl)#int g0/1 <br/>
+R2(config-if)#ip access-group TO_192.168.2.0/24 out <br/>
+  <br/>
+<p align="center">
+<img src="https://i.imgur.com/nueynSi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+Configuration of ACLs from R1 to be configured as close as possible to the destination. Standard Numbered ACLs are used for this part of the lab.<br/>
+Commands:<br/>
+R1(config)#access-list 1 deny 172.16.1.0 0.0.0.255<br/>
+R1(config)#access-list 1 permit any<br/>
+ <br/>
+<p align="center">
+<img src="https://i.imgur.com/iyM29Zd.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+I apply the ACL in the g0/1 interface for the router to block the outbound traffic coming from 172.16.1.1<br/>
+Commands:<br/>
+R1(config)#int g0/1<br/>
+R1(config-if)#ip access-group 1 out<br/>
+ <br/>
+<p align="center">
+<img src="https://i.imgur.com/gsz5DV3.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 Observe the wiped disk:  <br/>
+<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>Observe the wiped disk:  <br/>
+<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>Observe the wiped disk:  <br/>
 <img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
