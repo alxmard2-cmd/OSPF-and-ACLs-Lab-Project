@@ -160,7 +160,7 @@ From PC1 to SRV1 there is connection.
 - <b>Fully functional OSPF routing between routers</b> 
 - <b>Secure traffic filtering policies using ACLs</b>
 - <b>Controlled inter-network communication</b>
-- <b>End-to-end network validation through testing</b>
+- <b>End-to-end network validation</b>
 
 
 <!--
